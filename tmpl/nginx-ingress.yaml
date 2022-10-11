@@ -4,7 +4,6 @@ metadata:
   name: nginx-ingress
   namespace: ${K8S_NAMESPACE}
   annotations:
-    kubernetes.io/ingress.class: ${K8S_NAMESPACE}-nginx
     nginx.ingress.kubernetes.io/enable-modsecurity: "true"
     nginx.ingress.kubernetes.io/enable-owasp-core-rules: "true"
     nginx.ingress.kubernetes.io/modsecurity-snippet: |
@@ -22,6 +21,7 @@ metadata:
       more_set_headers "X-Frame-Options: DENY";
       more_set_headers "X-Xss-Protection: 1";
 spec:
+  ingressClassName: ${K8S_NAMESPACE}-nginx
   tls:
     - hosts:
         - ${HOST_NAME}
@@ -477,7 +477,7 @@ spec:
         - /nginx-ingress-controller
         - --publish-service=$(POD_NAMESPACE)/ingress-nginx-controller
         - --election-id=ingress-controller-leader
-        - --controller-class=k8s.io/$(POD_NAMESPACE)-ingress-nginx
+        - --controller-class=k8s.io/ingress-nginx
         - --ingress-class=$(POD_NAMESPACE)-nginx
         - --configmap=$(POD_NAMESPACE)/ingress-nginx-controller
         - --validating-webhook=:8443
