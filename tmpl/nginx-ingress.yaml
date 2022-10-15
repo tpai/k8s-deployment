@@ -5,8 +5,8 @@ metadata:
   name: https-secret
   namespace: ${K8S_NAMESPACE}
 data:
-  tls.crt: ${BASE64_SSL_CRT}
-  tls.key: ${BASE64_SSL_KEY}
+  tls.crt: ${SSL_CRT_BASE64}
+  tls.key: ${SSL_KEY_BASE64}
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
