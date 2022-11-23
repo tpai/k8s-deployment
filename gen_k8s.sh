@@ -8,9 +8,9 @@ envsubst < tmpl/nginx-ingress.yaml > nginx-ingress.yaml
 envsubst < tmpl/deployment.yaml > deployment.yaml
 
 export CLOUDFLARE_API_TOKEN=
-export CERT_MANAGER_EMAIL=
-export CERT_MANAGER_STAGING_SERVER=https://acme-staging-v02.api.letsencrypt.org/directory
-export CERT_MANAGER_PROD_SERVER=https://acme-v02.api.letsencrypt.org/directory
+export WILDCARD_CN=
 
+envsubst < tmpl/reflector.yaml > reflector.yaml
 envsubst < tmpl/cert-manager.yaml > cert-manager.yaml
 envsubst < tmpl/cluster-issuer.yaml > cluster-issuer.yaml
+envsubst < tmpl/https-secret.yaml > https-secret.yaml

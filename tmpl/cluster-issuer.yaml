@@ -10,32 +10,14 @@ stringData:
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
- name: letsencrypt-staging
+ name: cloudflare
  namespace: cert-manager
 spec:
   acme:
-    server: ${CERT_MANAGER_STAGING_SERVER}
-    email: ${CERT_MANAGER_EMAIL_ADDRESS}
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: tony.pai@onedegree.hk
     privateKeySecretRef:
-      name: letsencrypt-staging
-    solvers:
-    - dns01:
-        cloudflare:
-          apiTokenSecretRef:
-            name: cloudflare-api-token-secret
-            key: api-token
----
-apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
-metadata:
- name: letsencrypt-prod
- namespace: cert-manager
-spec:
-  acme:
-    server: ${CERT_MANAGER_PROD_SERVER}
-    email: ${CERT_MANAGER_EMAIL_ADDRESS}
-    privateKeySecretRef:
-      name: letsencrypt-prod
+      name: cloudflare
     solvers:
     - dns01:
         cloudflare:
