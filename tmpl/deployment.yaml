@@ -9,26 +9,26 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: https-echo
+  name: ${APP_NAME}
   namespace: ${K8S_NAMESPACE}
   labels:
-    app: https-echo
+    app: ${APP_NAME}
 spec:
   revisionHistoryLimit: 5
   replicas: 1
   selector:
     matchLabels:
-      app: https-echo
+      app: ${APP_NAME}
   template:
     metadata:
       labels:
-        app: https-echo
+        app: ${APP_NAME}
     spec:
       imagePullSecrets:
         - name: regcred
       containers:
-        - name: https-echo
-          image: mendhak/http-https-echo:19
+        - name: ${APP_NAME}
+          image: ${APP_IMAGE}
           ports:
             - name: http
               containerPort: 8080
@@ -42,14 +42,14 @@ spec:
             initialDelaySeconds: 10
           resources:
             requests:
-              memory: 400Mi
+              memory: 256Mi
             limits:
-              memory: 400Mi
+              memory: 512Mi
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: https-echo
+  name: ${APP_NAME}
   namespace: ${K8S_NAMESPACE}
 spec:
   ports:
@@ -57,4 +57,4 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    app: https-echo
+    app: ${APP_NAME}

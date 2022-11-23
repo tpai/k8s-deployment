@@ -2,7 +2,9 @@
 
 export WHITELIST_IP=0.0.0.0/0
 export HOST_NAME=
-export K8S_NAMESPACE=https-echo
+export K8S_NAMESPACE=
+export APP_NAME=
+export APP_IMAGE=
 
 envsubst < tmpl/nginx-ingress.yaml > nginx-ingress.yaml
 envsubst < tmpl/deployment.yaml > deployment.yaml

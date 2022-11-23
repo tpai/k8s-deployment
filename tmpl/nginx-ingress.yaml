@@ -37,7 +37,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: https-echo
+                name: ${APP_NAME}
                 port:
                   number: 8080
 ---
