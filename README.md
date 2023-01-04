@@ -1,42 +1,15 @@
-# AKS Demo
+# K8s Deployment
 
-## Prerequisites
-
-Edit environment variables in `gen_k8s.sh`.
-
-Generate Kubernetes YAML files.
-
-```sh
-./gen_k8s.sh
 ```
-
-## Install https-echo w/ nginx-ingress
-
-```sh
-kubectl apply -f deployment.yaml
-kubectl apply -f nginx-ingress.yaml
-```
-
-Visit `http://{ip}/metrics` to verify prometheus.
-
-Visit `https://{domain}` to verify https-echo.
-
-## Install cert-manager
-
-```sh
-kubectl apply -f cert-manager.yaml
-kubectl apply -f cluster-issuer.yaml
-```
-
-Disable staging mode, retrieve real certificate from ACME.
-
-```diff
-kind: Ingress
-metadata:
-  ...
-  annotations:
--   cert-manager.io/cluster-issuer: "letsencrypt-staging"
-+   cert-manager.io/cluster-issuer: "letsencrypt-prod"
+- depl/
+  - {app_name}.yaml
+- essential/
+  - cert-manager.yaml      # cert-manager
+  - cluster-issuer.yaml    # cloudflare dns & letsencrypt
+  - https-secret.yaml      # wildcard certificate
+  - reflector.yaml         # copy cert to specific namespace
+  - env-resource.yaml      # namespace
+  - nginx-ingress.yaml     # traffic entrance & network rules
 ```
 
 ## Create nginx-ingress dashboard

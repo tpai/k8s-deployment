@@ -15,7 +15,7 @@ metadata:
 spec:
   acme:
     server: https://acme-v02.api.letsencrypt.org/directory
-    email: tony.pai@onedegree.hk
+    email: ${ACME_EMAIL}
     privateKeySecretRef:
       name: cloudflare
     solvers:

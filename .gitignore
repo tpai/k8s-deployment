@@ -1,5 +1,3 @@
-.azure/
-kubeconfig
-.bash_history
+output/
 !tmpl/
 /*.yaml
