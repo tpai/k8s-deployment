@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: turtle-soup
+  namespace: legacy
+  labels:
+    app: turtle-soup
+spec:
+  revisionHistoryLimit: 5
+  replicas: 1
+  selector:
+    matchLabels:
+      app: turtle-soup
+  template:
+    metadata:
+      labels:
+        app: turtle-soup
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: turtle-soup
+          image: tonypai/turtle-soup
+          ports:
+            - name: http
+              containerPort: 8080
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 10
+          resources:
+            requests:
+              memory: 64Mi
+            limits:
+              memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: turtle-soup
+  namespace: legacy
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: turtle-soup

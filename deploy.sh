@@ -17,6 +17,7 @@ envsubst < essential/https-secret.yaml > output/https-secret.yaml
 envsubst < depl/idiomthon.yaml > output/idiomthon.yaml
 envsubst < depl/keyboard-generator.yaml > output/keyboard-generator.yaml
 envsubst < depl/throw-and-hit.yaml > output/throw-and-hit.yaml
+envsubst < depl/turtle-soup.yaml > output/turtle-soup.yaml
 
 kubectl apply -f output
 

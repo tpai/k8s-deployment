@@ -21,6 +21,7 @@ spec:
         - idiomthon.tonypa.in
         - keyboard-generator.tonypa.in
         - throw-and-hit.tonypa.in
+        - turtle-soup.tonypa.in
       secretName: https-secret
   rules:
     - http:
@@ -60,6 +61,16 @@ spec:
             backend:
               service:
                 name: throw-and-hit
+                port:
+                  number: 8080
+    - host: turtle-soup.tonypa.in
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: turtle-soup
                 port:
                   number: 8080
 ---
