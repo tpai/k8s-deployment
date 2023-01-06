@@ -12,20 +12,16 @@
   - nginx-ingress.yaml     # traffic entrance & network rules
 ```
 
-## Create nginx-ingress dashboard
+## Create nginx-ingress dashboard in Grafana
 
-Edit `prometheus.yml` config for target IP.
-
-Launch Prometheus and Grafana services.
-
-```sh
-cd prom; docker-compose up -d
-```
-
-In Grafana, add Prometheus data source.
-
-```
-HTTP.URL http://kubernetes.docker.internal:9090
-```
-
-Import [nginx-ingress dashboard](https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/grafana/dashboards/nginx.json)
+1. Specify `target_ip` in `prometheus.yaml`
+1. Launch Prometheus and Grafana
+    ```sh
+    cd prom; docker-compose up -d
+    ```
+1. In Grafana add Prometheus data source
+    ```
+    HTTP
+    URL http://kubernetes.docker.internal:9090
+    ```
+1. Import [nginx-ingress](https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/grafana/dashboards/nginx.json) dashboard
