@@ -24,15 +24,6 @@ spec:
         - turtle-soup.tonypa.in
       secretName: https-secret
   rules:
-    - http:
-        paths:
-          - path: /metrics
-            pathType: Prefix
-            backend:
-              service:
-                name: internal-ingress-nginx-controller
-                port:
-                  number: 10254
     - host: idiomthon.tonypa.in
       http:
         paths:

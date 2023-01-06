@@ -8,6 +8,7 @@ mkdir -p output
 
 envsubst < essential/env-resource.yaml > output/env-resource.yaml
 envsubst < essential/nginx-ingress.yaml > output/nginx-ingress.yaml
+envsubst < essential/metrics-ingress.yaml > output/metrics-ingress.yaml
 
 envsubst < essential/reflector.yaml > output/reflector.yaml
 envsubst < essential/cert-manager.yaml > output/cert-manager.yaml
