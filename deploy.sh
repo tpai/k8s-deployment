@@ -20,6 +20,11 @@ envsubst < depl/keyboard-generator.yaml > output/keyboard-generator.yaml
 envsubst < depl/throw-and-hit.yaml > output/throw-and-hit.yaml
 envsubst < depl/turtle-soup.yaml > output/turtle-soup.yaml
 
+export OPENAI_API_KEY=
+export TELEGRAM_TOKEN=
+
+envsubst < depl/lsa-qa-bot.yaml > output/lsa-qa-bot.yaml
+
 kubectl apply -f output
 
 rm -rf output

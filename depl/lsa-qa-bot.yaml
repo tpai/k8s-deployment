@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lsa-qa-bot
+  namespace: legacy
+  labels:
+    app: lsa-qa-bot
+spec:
+  revisionHistoryLimit: 5
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lsa-qa-bot
+  template:
+    metadata:
+      labels:
+        app: lsa-qa-bot
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: lsa-qa-bot
+          image: tonypai/lsa-qa-bot
+          env:
+            - name: OPENAI_API_KEY
+              value: "${OPENAI_API_KEY}"
+            - name: TELEGRAM_TOKEN
+              value: "${TELEGRAM_TOKEN}"
+          resources:
+            requests:
+              memory: 512Mi
+            limits:
+              memory: 1Gi
