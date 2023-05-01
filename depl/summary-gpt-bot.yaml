@@ -1,31 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ai-for-life
+  name: summary-gpt-bot
   namespace: legacy
   labels:
-    app: ai-for-life
+    app: summary-gpt-bot
 spec:
   revisionHistoryLimit: 5
   replicas: 1
   selector:
     matchLabels:
-      app: ai-for-life
+      app: summary-gpt-bot
   template:
     metadata:
       labels:
-        app: ai-for-life
+        app: summary-gpt-bot
     spec:
       imagePullSecrets:
         - name: regcred
       containers:
-        - name: ai-for-life
-          image: tonypai/ai-for-life
+        - name: summary-gpt-bot
+          image: tonypai/summary-gpt-bot
           env:
             - name: OPENAI_API_KEY
               value: "${OPENAI_API_KEY}"
             - name: OPENAI_MODEL
-              value: "gpt-4"
+              value: "gpt-3.5-turbo"
             - name: TELEGRAM_TOKEN
               value: "${TELEGRAM_TOKEN}"
             - name: TS_LANG

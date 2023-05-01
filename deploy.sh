@@ -13,15 +13,10 @@ envsubst < essential/cert-manager.yaml > output/cert-manager.yaml
 envsubst < essential/cluster-issuer.yaml > output/cluster-issuer.yaml
 envsubst < essential/https-secret.yaml > output/https-secret.yaml
 
-envsubst < depl/idiomthon.yaml > output/idiomthon.yaml
-envsubst < depl/keyboard-generator.yaml > output/keyboard-generator.yaml
-envsubst < depl/throw-and-hit.yaml > output/throw-and-hit.yaml
-envsubst < depl/turtle-soup.yaml > output/turtle-soup.yaml
 
 export OPENAI_API_KEY=
 export TELEGRAM_TOKEN=
-
-envsubst < depl/ai-for-life.yaml > output/ai-for-life.yaml
+envsubst < depl/summary-gpt-bot.yaml > output/summary-gpt-bot.yaml
 
 kubectl apply -f output
 
